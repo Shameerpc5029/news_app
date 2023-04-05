@@ -29,6 +29,29 @@ class HomeService {
     return null;
   }
 
+  Future<NewList?> getNextNews(url,id) async {
+    Dio dio = Dio();
+
+    try {
+      final Response response = await dio.post(url,  data: {
+          "category": id,
+        },);
+      if (response.statusCode == 200) {
+        if (response.data == null) {
+          return null;
+        } else {
+          final NewList model = NewList.fromJson(response.data);
+
+          return model;
+        }
+      }
+    } catch (e) {
+      DioException().dioError(e);
+      log(e.toString());
+    }
+    return null;
+  }
+
   Future<NewList?> getNews(id) async {
     Dio dio = Dio();
     try {

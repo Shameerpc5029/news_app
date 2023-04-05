@@ -6,8 +6,7 @@ class NewList {
     required this.results,
   });
 
-
-  int count;
+  int? count;
 
   String? next;
   dynamic previous;
@@ -39,12 +38,12 @@ class Result {
     required this.category,
   });
 
-  int id;
-  DateTime createdAt;
-  String image;
-  String title;
-  String content;
-  int category;
+  int? id;
+  dynamic createdAt;
+  String? image;
+  String? title;
+  String? content;
+  int? category;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["id"],

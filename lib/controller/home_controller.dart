@@ -6,13 +6,14 @@ import 'package:news_app/services/home/home_service.dart';
 class HomeController extends ChangeNotifier {
   HomeController() {
     getAllCategory();
-
   }
 
   bool isLoading = false;
   NewsModel? model;
   NewList? newList;
   bool isLoading2 = false;
+
+  final controller = ScrollController();
 
   void getAllCategory() async {
     isLoading = true;
@@ -28,6 +29,7 @@ class HomeController extends ChangeNotifier {
         notifyListeners();
       }
     });
+    return;
   }
 
   void getNews(id) async {
@@ -44,5 +46,23 @@ class HomeController extends ChangeNotifier {
         notifyListeners();
       }
     });
+    return;
+  }
+
+  void getNextNews(url,id) async {
+    isLoading = true;
+    notifyListeners();
+    await HomeService().getNextNews(url,id).then((value) {
+      if (value != null) {
+        newList = value;
+        notifyListeners();
+        isLoading2 = false;
+        notifyListeners();
+      } else {
+        isLoading2 = false;
+        notifyListeners();
+      }
+    });
+    return;
   }
 }
