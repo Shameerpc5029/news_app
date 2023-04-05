@@ -11,7 +11,16 @@ class ContantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_circle_left_outlined,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Consumer<HomeController>(
           builder: (context, value, child) {

@@ -6,12 +6,32 @@ import 'package:news_app/view/home/tabs/catogory_screen.dart';
 
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  TabController? _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 7, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: 1,
       length: 7,
       child: Consumer<HomeController>(
         builder: (context, value, child) {
@@ -25,6 +45,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               bottom: TabBar(
+                controller: _tabController,
                 isScrollable: true,
                 labelColor: AppColor.textColor,
                 tabs: [
@@ -52,15 +73,28 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            body: const TabBarView(
+            body: TabBarView(
+              controller: _tabController,
               children: [
-                AllNews(),
-                CategoryScreen(),
-                AllNews(),
-                AllNews(),
-                AllNews(),
-                AllNews(),
-                AllNews(),
+                AllNews(id: value.model?.blogsCategory[0].id.toString() ?? ''),
+                CategoryScreen(
+                  id: value.model?.blogsCategory[1].id.toString() ?? '',
+                ),
+                CategoryScreen(
+                  id: value.model?.blogsCategory[2].id.toString() ?? '',
+                ),
+                CategoryScreen(
+                  id: value.model?.blogsCategory[3].id.toString() ?? '',
+                ),
+                CategoryScreen(
+                  id: value.model?.blogsCategory[4].id.toString() ?? '',
+                ),
+                CategoryScreen(
+                  id: value.model?.blogsCategory[5].id.toString() ?? '',
+                ),
+                CategoryScreen(
+                  id: value.model?.blogsCategory[6].id.toString() ?? '',
+                ),
               ],
             ),
           );

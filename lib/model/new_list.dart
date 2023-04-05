@@ -7,7 +7,7 @@ class NewList {
   });
 
   int count;
-  String next;
+  String? next;
   dynamic previous;
   List<Result> results;
 

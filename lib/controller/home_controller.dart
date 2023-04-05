@@ -6,7 +6,6 @@ import 'package:news_app/services/home/home_service.dart';
 class HomeController extends ChangeNotifier {
   HomeController() {
     getAllCategory();
-    getNews();
   }
 
   bool isLoading = false;
@@ -30,10 +29,10 @@ class HomeController extends ChangeNotifier {
     });
   }
 
-  void getNews() async {
+  void getNews(id) async {
     isLoading = true;
     notifyListeners();
-    await HomeService().getNews().then((value) {
+    await HomeService().getNews(id).then((value) {
       if (value != null) {
         newList = value;
         notifyListeners();

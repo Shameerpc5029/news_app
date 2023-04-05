@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 import 'package:news_app/common/api/base_url.dart';
@@ -19,7 +18,7 @@ class HomeService {
           return null;
         } else {
           final NewsModel model = NewsModel.fromJson(response.data);
-          log(model.toString());
+
           return model;
         }
       }
@@ -30,13 +29,13 @@ class HomeService {
     return null;
   }
 
-  Future<NewList?> getNews() async {
+  Future<NewList?> getNews(id) async {
     Dio dio = Dio();
     try {
       final Response response = await dio.post(
         BaseUrl.baseUrl + ApiEndpoints.newsAndBlogsCatg,
         data: {
-          "category": '0',
+          "category": id,
         },
       );
       if (response.statusCode == 200) {
@@ -44,7 +43,7 @@ class HomeService {
           return null;
         } else {
           final NewList model = NewList.fromJson(response.data);
-          log(model.toString());
+
           return model;
         }
       }
