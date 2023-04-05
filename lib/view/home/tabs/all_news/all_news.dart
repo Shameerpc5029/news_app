@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/common/sizedbox.dart';
+import 'package:news_app/controller/home_controller.dart';
+import 'package:provider/provider.dart';
 
 class AllNews extends StatelessWidget {
   const AllNews({
@@ -8,6 +10,9 @@ class AllNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<HomeController>(context, listen: false).getAllCategory();
+    });
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
