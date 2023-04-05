@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/common/color.dart';
 import 'package:news_app/controller/home_controller.dart';
-import 'package:news_app/view/home/home_screen.dart';
+import 'package:news_app/view/home/tabs/category_details_screen.dart';
+
 import 'package:provider/provider.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             elevation: 0,
           ),
         ),
-        home: const HomeScreen(),
+        home: const CategoryTabBarView(),
       ),
     );
   }

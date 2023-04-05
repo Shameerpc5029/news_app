@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:dio/dio.dart';
 import 'package:news_app/common/api/base_url.dart';
 import 'package:news_app/common/api/endpoints.dart';
@@ -19,7 +18,7 @@ class HomeService {
           return null;
         } else {
           final NewsModel model = NewsModel.fromJson(response.data);
-          log(model.toString());
+
           return model;
         }
       }
@@ -44,7 +43,7 @@ class HomeService {
           return null;
         } else {
           final NewList model = NewList.fromJson(response.data);
-          log(model.toString());
+
           return model;
         }
       }

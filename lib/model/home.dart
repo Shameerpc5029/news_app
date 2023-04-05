@@ -7,8 +7,7 @@ class NewsModel {
   bool status;
   List<BlogsCategory> blogsCategory;
 
-  factory NewsModel.fromJson(Map<String, dynamic> json) =>
-      NewsModel(
+  factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
         status: json["status"],
         blogsCategory: List<BlogsCategory>.from(
             json["blogs_category"].map((x) => BlogsCategory.fromJson(x))),
