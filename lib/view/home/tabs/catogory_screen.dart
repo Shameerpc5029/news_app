@@ -44,9 +44,12 @@ class CategoryScreen extends StatelessWidget {
                         Container(
                           height: 150,
                           decoration: BoxDecoration(
-                            image: const DecorationImage(
+                            image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: AssetImage('assets/images/hello.png'),
+                              image: NetworkImage(
+                                'https://d2qetcusef3plg.cloudfront.net${value.newList?.results[index].image}?? '
+                                '',
+                              ),
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -80,7 +83,6 @@ class CategoryScreen extends StatelessWidget {
             );
           },
         ),
-
       ),
     );
   }
