@@ -1,12 +1,15 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 import 'package:news_app/common/api/base_url.dart';
 import 'package:news_app/common/api/endpoints.dart';
 import 'package:news_app/model/home.dart';
+import 'package:news_app/model/new_list.dart';
+import 'package:news_app/utils/exeptions/dio_exceptions.dart';
 
 class HomeService {
-  Future<NewsModel?> getNews() async {
+  Future<NewsModel?> getNewsCategory() async {
     Dio dio = Dio();
     try {
       final Response response =
@@ -21,6 +24,32 @@ class HomeService {
         }
       }
     } catch (e) {
+      DioException().dioError(e);
+      log(e.toString());
+    }
+    return null;
+  }
+
+  Future<NewList?> getNews() async {
+    Dio dio = Dio();
+    try {
+      final Response response = await dio.post(
+        BaseUrl.baseUrl + ApiEndpoints.newsAndBlogsCatg,
+        data: {
+          "category": '0',
+        },
+      );
+      if (response.statusCode == 200) {
+        if (response.data == null) {
+          return null;
+        } else {
+          final NewList model = NewList.fromJson(response.data);
+          log(model.toString());
+          return model;
+        }
+      }
+    } catch (e) {
+      DioException().dioError(e);
       log(e.toString());
     }
     return null;

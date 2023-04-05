@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/common/sizedbox.dart';
 import 'package:news_app/controller/home_controller.dart';
+import 'package:news_app/view/content/content_view.dart';
 import 'package:provider/provider.dart';
 
 class AllNews extends StatelessWidget {
@@ -66,47 +67,68 @@ class AllNews extends StatelessWidget {
               ),
             ),
           ),
-          ListView.separated(
-            physics: const ScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Container(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: const DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage('assets/images/hello.png'),
-                          )),
-                    ),
-                    KSizedBox.kheight10,
-                    const Text(
-                      "heloofhalsjfskfhaskhfksahfidhsffhsjdfheiwfksifiasdfjhsjkfhkashaksfhais",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    KSizedBox.kheight10,
-                    const Text(
-                      "heloofhalsjfskfhaskhfksahfidhsffhsjdfheiwfksifiasdfjhsjkfhkashaksfhais",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return KSizedBox.kheight10;
+          Consumer<HomeController>(
+            builder: (context, value, child) {
+              return value.isLoading2 == true
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView.separated(
+                      physics: const ScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: value.newList?.results.length ?? 0,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ContantScreen(
+                                  index: index,
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: const DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage(
+                                            'assets/images/hello.png'),
+                                      )),
+                                ),
+                                KSizedBox.kheight10,
+                                Text(
+                                  value.newList?.results[index].title ?? '',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                KSizedBox.kheight10,
+                                Text(
+                                  maxLines: 2,
+                                  value.newList?.results[index].content ?? '',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return KSizedBox.kheight10;
+                      },
+                    );
             },
           )
         ],
