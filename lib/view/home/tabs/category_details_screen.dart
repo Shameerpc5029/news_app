@@ -14,6 +14,9 @@ class CategoryTabBarView extends StatelessWidget {
   Widget build(BuildContext context) {
     var pro = Provider.of<HomeController>(context);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('News & Blogs'),
+      ),
       body: SafeArea(
         child: DefaultTabController(
           length: pro.model?.blogsCategory.length ?? 0,

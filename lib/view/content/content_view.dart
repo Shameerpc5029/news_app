@@ -32,9 +32,12 @@ class ContantScreen extends StatelessWidget {
                   child: Container(
                     height: 200,
                     decoration: BoxDecoration(
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage('assets/images/hello.png'),
+                        image: NetworkImage(
+                          'https://d2qetcusef3plg.cloudfront.net${value.newList?.results[index].image}?? '
+                          '',
+                        ),
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),
