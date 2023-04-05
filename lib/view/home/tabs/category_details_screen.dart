@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/common/color.dart';
 
 import 'package:news_app/controller/home_controller.dart';
-import 'package:news_app/view/home/tabs/all_news/all_news.dart';
+
 import 'package:news_app/view/home/tabs/catogory_screen.dart';
 
 import 'package:provider/provider.dart';

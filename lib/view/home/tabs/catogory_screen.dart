@@ -78,7 +78,7 @@ class CategoryScreen extends StatelessWidget {
                   );
                 },
                 separatorBuilder: (context, index) => KSizedBox.kheight10,
-                itemCount: value.newList?.results.length ?? 0,
+                itemCount: value.newList?.results.length ?? 0 + 1,
               ),
             );
           },
