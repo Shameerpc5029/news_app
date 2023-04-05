@@ -6,8 +6,8 @@ class NewList {
     required this.results,
   });
 
-  int count;
-  String next;
+  int? count;
+  String? next;
   dynamic previous;
   List<Result> results;
 

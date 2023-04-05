@@ -52,15 +52,15 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            body: const TabBarView(
+            body: TabBarView(
               children: [
-                AllNews(),
-                CategoryScreen(),
-                AllNews(),
-                AllNews(),
-                AllNews(),
-                AllNews(),
-                AllNews(),
+                AllNews(id: value.model?.blogsCategory[0].name ?? ''),
+                CategoryScreen(id: value.model?.blogsCategory[1].name ?? ''),
+                CategoryScreen(id: value.model?.blogsCategory[2].name ?? ''),
+                CategoryScreen(id: value.model?.blogsCategory[3].name ?? ''),
+                CategoryScreen(id: value.model?.blogsCategory[4].name ?? ''),
+                CategoryScreen(id: value.model?.blogsCategory[5].name ?? ''),
+                CategoryScreen(id: value.model?.blogsCategory[6].name ?? ''),
               ],
             ),
           );

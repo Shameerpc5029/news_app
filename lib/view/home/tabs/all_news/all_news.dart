@@ -7,12 +7,14 @@ import 'package:provider/provider.dart';
 class AllNews extends StatelessWidget {
   const AllNews({
     super.key,
+    required this.id,
   });
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<HomeController>(context, listen: false).getAllCategory();
+      Provider.of<HomeController>(context, listen: false).getNews(id);
     });
     return SingleChildScrollView(
       child: Column(

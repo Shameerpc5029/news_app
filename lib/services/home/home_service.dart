@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'dart:ffi';
+
 
 import 'package:dio/dio.dart';
 import 'package:news_app/common/api/base_url.dart';
@@ -30,13 +30,13 @@ class HomeService {
     return null;
   }
 
-  Future<NewList?> getNews() async {
+  Future<NewList?> getNews(id) async {
     Dio dio = Dio();
     try {
       final Response response = await dio.post(
         BaseUrl.baseUrl + ApiEndpoints.newsAndBlogsCatg,
         data: {
-          "category": '0',
+          "category": id,
         },
       );
       if (response.statusCode == 200) {
